@@ -66,6 +66,7 @@
     <Compile Include="Assets\Script\Bullet.cs" />
     <Compile Include="Assets\Script\Health.cs" />
     <Compile Include="Assets\Script\Look.cs" />
+    <Compile Include="Assets\Script\MapEdge.cs" />
     <Compile Include="Assets\Script\PlayerMovement.cs" />
     <Compile Include="Assets\Script\Weapon.cs" />
     <Reference Include="UnityEngine">

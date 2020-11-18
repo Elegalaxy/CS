@@ -4,30 +4,28 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 1f;
+    public float speed = 40f;
     public float damage = 10f;
     Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
-
         rb = GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * speed, ForceMode.Impulse);   
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        rb.AddForce(transform.forward * speed, ForceMode.Impulse); //Add force when the bullet is shot
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag == "Ground") Destroy(gameObject);
+        if(other.gameObject.tag == "Ground") destroy(); //Destroy when hit ground
 
-        if(other.gameObject.GetComponent<Health>() != null) {
+        if(other.gameObject.GetComponent<Health>() != null) { //If hit player
             Health health = other.gameObject.GetComponent<Health>();
-            health.takeDamage(damage);
+            health.takeDamage(damage); //Damage player
+            destroy();
         }
+    }
+
+    public void destroy() { //Self-destroy function
+        Destroy(gameObject);
     }
 }

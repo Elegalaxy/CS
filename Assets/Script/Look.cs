@@ -27,8 +27,6 @@ public class Look : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -90f, 90f); //Avoid over rotate
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f); //Apply camera rotation on Y
-        //weapon.localRotation = Quaternion.Euler(xRotation, 0f, 0f); //Apply camera rotation on Y
         playerBody.Rotate(Vector3.up * mouseX); //Apply body rotation on X
-        //weapon.Rotate(Vector3.up * mouseX); //Apply weapon rotation on X
     }
 }
