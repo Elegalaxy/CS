@@ -28,4 +28,8 @@ public class Bullet : MonoBehaviour
     public void destroy() { //Self-destroy function
         Destroy(gameObject);
     }
+
+    public void setStat(int dmg) { //Set damage from weapon
+        damage = dmg;
+    }
 }
