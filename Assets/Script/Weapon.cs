@@ -1,23 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Weapon: MonoBehaviour {
     public Transform firePoint;
     public GameObject bullet;
     public Camera cam;
+    public TMP_Text showBullet;
 
     public float reloadTime = 2f;
     public float shootingTime = 0.5f;
     public int maxMag = 10;
+    public string weaponName = "Pistol";
 
-    int weaponIndex = 0;
+    int currentDamage;
+
     int currentMag;
     float currentShootingTime;
     bool isReload;
 
     private void Start() {
         currentMag = maxMag; //Set starting mag
+        updateBullet(); //Update mag info
+        updateGun(); //Update bullet info from weapon
     }
 
     // Update is called once per frame
@@ -28,12 +35,12 @@ public class Weapon: MonoBehaviour {
         if(Input.GetMouseButtonDown(0) && currentMag > 0 && currentShootingTime <= 0) shoot();
         //If left mouse button clicked when have mag and not cool down
 
-        if(Input.GetKeyDown(KeyCode.R)) {
-            currentShootingTime = reloadTime;
+        if(Input.GetKeyDown(KeyCode.R)) { //Reload
+            currentShootingTime = reloadTime; //Set reload time
             isReload = true;
         }
 
-        if(isReload && currentShootingTime <= 0) reload();
+        if(isReload && currentShootingTime <= 0) reload(); //finish reload when countdown end
     }
 
     void shoot() {
@@ -48,14 +55,26 @@ public class Weapon: MonoBehaviour {
         direction = targetPoint - firePoint.position; //Calculate direction of the bullet
 
         GameObject currentBullet = Instantiate(bullet, firePoint.position, firePoint.rotation); //Instantiate bullet
+        currentBullet.GetComponent<Bullet>().setStat(currentDamage);
         currentBullet.transform.forward = direction; //Shoot the bullet to the direction
+        FindObjectOfType<SoundManager>().play("PistolShoot");
 
         currentShootingTime = shootingTime; //Reset shooting time
-        currentMag--;
+        currentMag--; //Decrease bullet and update UI
+        updateBullet();
     }
 
-    void reload() {
+    void reload() { //Reload function
         currentMag = maxMag;
         isReload = false;
+        updateBullet(); //Update UI
+    }
+
+    void updateBullet() {
+        showBullet.text = currentMag + " / " + maxMag; //Update UI
+    }
+
+    public void updateGun() { //Update damage and speed after pick a new gun
+        currentDamage = FindObjectOfType<WeaponManager>().findWeapon(weaponName).damage;
     }
 }
