@@ -22,6 +22,7 @@ public class Weapon: MonoBehaviour {
     bool isReload;
 
     private void Start() {
+        firePoint = gameObject.transform.Find("Fire Point");
         currentMag = maxMag; //Set starting mag
         updateBullet(); //Update mag info
         updateGun(); //Update bullet info from weapon
