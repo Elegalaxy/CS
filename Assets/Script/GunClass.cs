@@ -2,11 +2,11 @@
 
 [System.Serializable]
 public class GunClass : WeaponClass {
-    public float recoil;
+    public float shootingTime;
     public float reloadSpeed;
 
-    public GunClass(string bulletTy, int dmg, int mag, GameObject sprite, float rec, float reloadSpd): base(bulletTy, dmg, mag, sprite) {
-        recoil = rec;
+    public GunClass(string bulletTy, int dmg, int mag, float shoot, float reloadSpd): base(bulletTy, dmg, mag) {
+        shootingTime = shoot;
         reloadSpeed = reloadSpd;
     }
 }
