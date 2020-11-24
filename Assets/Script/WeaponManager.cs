@@ -11,6 +11,7 @@ public class WeaponManager : MonoBehaviour
         WeaponClass w = Array.Find(weaponList, weaponList => weaponList.bulletType == name);
         if(w == null) {
             Debug.LogWarning(name + " Not Found!");
+            return null;
         }
         return w;
     }

@@ -25,6 +25,9 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal"); //Get wasd input
         float z = Input.GetAxis("Vertical");
 
+        if(Input.GetButton("SpeedUp")) speed = 8f;
+        else speed = 5f;
+
         Vector3 move = transform.right * x * speed + transform.forward * z * speed + transform.up * velocity.y; //Put into vector 3
 
         controller.Move(move * Time.deltaTime); //Apply using controller

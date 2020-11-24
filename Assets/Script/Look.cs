@@ -7,9 +7,9 @@ public class Look : MonoBehaviour
     public float mouseSensitivity = 250f;
 
     public Transform playerBody;
-    public Transform weapon;
 
-    float xRotation = 0f;
+    [HideInInspector]
+    public float xRotation = 0f;
 
     // Start is called before the first frame update
     void Start()
