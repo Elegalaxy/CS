@@ -11,8 +11,8 @@ public class Weapon: MonoBehaviour {
     public TMP_Text showBullet;
     public Look look;
 
-    public float reloadTime = 2f;
-    public float shootingTime = 0.5f;
+    public float reloadTime;
+    public float shootingTime;
     public float recoil = 2f;
 
     public int maxMag;
@@ -20,10 +20,11 @@ public class Weapon: MonoBehaviour {
 
     int currentDamage;
 
+    int totalMag;
     int currentMag;
     float currentShootingTime;
     bool isReload;
-    WeaponClass currentWeapon;
+    GunClass currentWeapon;
 
     void Start() {
         updateGun(); //Update bullet info from weapon
@@ -34,15 +35,14 @@ public class Weapon: MonoBehaviour {
         //countdown
         if(currentShootingTime > 0) currentShootingTime -= Time.deltaTime; //Count shooting time
 
-        if(Input.GetMouseButtonDown(0) && currentMag > 0 && currentShootingTime <= 0 && currentWeapon != null) shoot();
+        if(Input.GetMouseButton(0) && currentMag > 0 && currentShootingTime <= 0 && currentWeapon != null) shoot();
         //If left mouse button clicked when have mag and not cool down
 
-        if(currentShootingTime <= 0 && PickDrop.slotFull && (Input.GetKeyDown(KeyCode.R) || (currentMag == 0 && Input.GetMouseButtonDown(0)))) {
+        if(PickDrop.slotFull && totalMag > 0 && currentMag != maxMag && (Input.GetKeyDown(KeyCode.R) || (currentMag == 0 && Input.GetMouseButtonUp(0)))) {
             startReload(); //Reload if press R or mag is finish but wanna shoot
         }
 
         if(isReload && currentShootingTime <= 0) reload(); //finish reload when countdown end
-
     }
 
 
@@ -76,13 +76,25 @@ public class Weapon: MonoBehaviour {
     }
 
     void reload() { //Reload function
-        currentMag = maxMag;
+        if(totalMag >= maxMag) {
+            totalMag -= maxMag - currentMag;
+            currentMag = maxMag;
+        } else {
+            if(maxMag - currentMag <= totalMag) {
+                totalMag -= maxMag - currentMag;
+                currentMag = maxMag;
+            } else {
+                currentMag += totalMag;
+                totalMag = 0;
+            }
+        }
+
         isReload = false;
         updateBullet(); //Update UI
     }
 
     void updateBullet() {
-        showBullet.text = currentMag + " / " + maxMag; //Update UI
+        showBullet.text = currentMag + " / " + totalMag; //Update UI
     }
 
     void AddRecoil(float force) {
@@ -95,15 +107,20 @@ public class Weapon: MonoBehaviour {
         if(currentWeapon != null) {
             currentDamage = currentWeapon.damage;
             maxMag = currentWeapon.maxMag;
+            totalMag = maxMag * 2;
+            shootingTime = currentWeapon.shootingTime;
+            reloadTime = currentWeapon.reloadSpeed;
             currentMag = maxMag;
         } else {
-            maxMag = 0;
-            currentMag = maxMag;
+            totalMag = 0;
+            shootingTime = 0;
+            reloadTime = 0;
+            currentMag = totalMag;
         }
         updateBullet();
     }
 
-    WeaponClass getWeapon(string name) {
+    GunClass getWeapon(string name) {
         return FindObjectOfType<WeaponManager>().findWeapon(weaponName);
     }
 }
