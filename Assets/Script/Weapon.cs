@@ -11,22 +11,27 @@ public class Weapon: MonoBehaviour {
     public TMP_Text showBullet;
     public Look look;
 
-    public float reloadTime;
-    public float shootingTime;
     public float recoil = 2f;
 
-    public int maxMag;
     public string weaponName;
+    public int selectedWeapon;
 
-    int currentDamage;
+    PickDrop currentWeapon;
 
-    int totalMag;
-    int currentMag;
     float currentShootingTime;
     bool isReload;
-    GunClass currentWeapon;
+
+    int maxMag;
+    float reloadTime;
+    float shootingTime;
+    int currentDamage;
 
     void Start() {
+        if(transform.GetChild(0) != null) {
+            transform.GetChild(0).GetComponent<PickDrop>().PickUp();
+            selectedWeapon = 0;
+        }
+        selectWeapon();
         updateGun(); //Update bullet info from weapon
     }
 
@@ -35,14 +40,29 @@ public class Weapon: MonoBehaviour {
         //countdown
         if(currentShootingTime > 0) currentShootingTime -= Time.deltaTime; //Count shooting time
 
-        if(Input.GetMouseButton(0) && currentMag > 0 && currentShootingTime <= 0 && currentWeapon != null) shoot();
+        if(Input.GetMouseButton(0) && currentWeapon.currentMag > 0 && currentShootingTime <= 0 && currentWeapon != null) shoot();
         //If left mouse button clicked when have mag and not cool down
 
-        if(PickDrop.slotFull && totalMag > 0 && currentMag != maxMag && (Input.GetKeyDown(KeyCode.R) || (currentMag == 0 && Input.GetMouseButtonUp(0)))) {
+        if(PickDrop.slotFull > 0 && currentWeapon.totalMag > 0 && currentWeapon.currentMag != maxMag && (Input.GetKeyDown(KeyCode.R) || (currentWeapon.currentMag == 0 && Input.GetMouseButtonUp(0)))) {
             startReload(); //Reload if press R or mag is finish but wanna shoot
         }
 
         if(isReload && currentShootingTime <= 0) reload(); //finish reload when countdown end
+
+        //Switch weapon
+
+        int previousSelectedWeapon = selectedWeapon;
+
+        if(Input.GetAxis("Mouse ScrollWheel") < 0f) {
+            if(selectedWeapon >= transform.childCount - 1) selectedWeapon = 0;
+            else selectedWeapon++;
+        }
+        if(Input.GetAxis("Mouse ScrollWheel") > 0f) {
+            if(selectedWeapon <= 0) selectedWeapon = transform.childCount - 1;
+            else selectedWeapon--;
+        }
+
+        if(previousSelectedWeapon != selectedWeapon) selectWeapon();
     }
 
 
@@ -65,7 +85,7 @@ public class Weapon: MonoBehaviour {
         AddRecoil(recoil); //Add recoil
 
         currentShootingTime = shootingTime; //Reset shooting time
-        currentMag--; //Decrease bullet
+        currentWeapon.currentMag--; //Decrease bullet
         updateBullet(); //Update bullet count
     }
 
@@ -76,16 +96,16 @@ public class Weapon: MonoBehaviour {
     }
 
     void reload() { //Reload function
-        if(totalMag >= maxMag) {
-            totalMag -= maxMag - currentMag;
-            currentMag = maxMag;
+        if(currentWeapon.totalMag >= maxMag) { //If reminding mag is bigger than max
+            currentWeapon.totalMag -= maxMag - currentWeapon.currentMag;
+            currentWeapon.currentMag = maxMag;
         } else {
-            if(maxMag - currentMag <= totalMag) {
-                totalMag -= maxMag - currentMag;
-                currentMag = maxMag;
+            if(maxMag - currentWeapon.currentMag <= currentWeapon.totalMag) { //If totalMag is bigger than require mag
+                currentWeapon.totalMag -= maxMag - currentWeapon.currentMag;
+                currentWeapon.currentMag = maxMag;
             } else {
-                currentMag += totalMag;
-                totalMag = 0;
+                currentWeapon.currentMag += currentWeapon.totalMag; //If total mag is not enough
+                currentWeapon.totalMag = 0;
             }
         }
 
@@ -94,33 +114,43 @@ public class Weapon: MonoBehaviour {
     }
 
     void updateBullet() {
-        showBullet.text = currentMag + " / " + totalMag; //Update UI
+        if(currentWeapon != null) showBullet.text = currentWeapon.currentMag + " / " + currentWeapon.totalMag; //Update UI
+        else showBullet.text = "0 / 0";
     }
 
     void AddRecoil(float force) {
         look.xRotation -= force; //Add recoil on weapon
     }
 
-    //Public functions
-    public void updateGun() { //Update damage and speed after pick a new gun
-        currentWeapon = getWeapon(weaponName);
+    void updateGun() { //Update damage and speed after pick a new gun
+        currentWeapon = getWeapon(weaponName); //Update weapon object
         if(currentWeapon != null) {
-            currentDamage = currentWeapon.damage;
-            maxMag = currentWeapon.maxMag;
-            totalMag = maxMag * 2;
-            shootingTime = currentWeapon.shootingTime;
-            reloadTime = currentWeapon.reloadSpeed;
-            currentMag = maxMag;
+            currentDamage = currentWeapon.currentDamage; //Update damage
+            maxMag = currentWeapon.maxMag; //Update max mag
+            shootingTime = currentWeapon.shootingTime; //Update shooting time
+            reloadTime = currentWeapon.reloadTime; //Update reload time
         } else {
-            totalMag = 0;
-            shootingTime = 0;
+            shootingTime = 0; //If not found set all to 0
             reloadTime = 0;
-            currentMag = totalMag;
         }
-        updateBullet();
+        updateBullet(); //Update bullet info
     }
 
-    GunClass getWeapon(string name) {
-        return FindObjectOfType<WeaponManager>().findWeapon(weaponName);
+    PickDrop getWeapon(string name) {
+        return transform.Find(name).GetComponent<PickDrop>(); //Find weapon object
     }
+
+    //Public functions
+    public void selectWeapon() {
+        int i = 0;
+        foreach(Transform weapon in transform) {
+            if(i == selectedWeapon) weapon.gameObject.SetActive(true);
+            else weapon.gameObject.SetActive(false);
+            i++;
+        }
+        if(transform.childCount > 0) weaponName = transform.GetChild(selectedWeapon).name;
+        else weaponName = "";
+        updateGun();
+    }
+
 }
