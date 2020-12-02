@@ -17,6 +17,6 @@ public class Health : MonoBehaviour
     public void takeDamage(float dmg) { //Function to take damage
         currentHealth -= dmg;
         if(currentHealth <= 0) gameObject.SetActive(false); //Die if health <= 0
-        Debug.Log(currentHealth);
+        Debug.Log(gameObject.name + " " + currentHealth);
     }
 }
