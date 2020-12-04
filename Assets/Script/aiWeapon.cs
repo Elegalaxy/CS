@@ -32,6 +32,7 @@ public class aiWeapon : MonoBehaviour
             currentBullet.GetComponent<Bullet>().setStat(currentDamage); //Set bullet damage
             FindObjectOfType<SoundManager>().play(weapon.name); //Play gun sound
             currentMag--;
+            Debug.Log(currentMag);
         }
     }
 
