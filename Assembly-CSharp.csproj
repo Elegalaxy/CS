@@ -71,6 +71,7 @@
     <Compile Include="Assets\Script\GrenadeClass.cs" />
     <Compile Include="Assets\Script\GunClass.cs" />
     <Compile Include="Assets\Script\Health.cs" />
+    <Compile Include="Assets\Script\HealthBar.cs" />
     <Compile Include="Assets\Script\Look.cs" />
     <Compile Include="Assets\Script\MapEdge.cs" />
     <Compile Include="Assets\Script\PickDrop.cs" />
@@ -80,8 +81,11 @@
     <Compile Include="Assets\Script\Weapon.cs" />
     <Compile Include="Assets\Script\WeaponClass.cs" />
     <Compile Include="Assets\Script\WeaponManager.cs" />
+    <Compile Include="Assets\Script\aiHealth.cs" />
     <Compile Include="Assets\Script\aiScript.cs" />
     <Compile Include="Assets\Script\aiWeapon.cs" />
+    <Compile Include="Assets\Script\mainMenu.cs" />
+    <Compile Include="Assets\Script\mapChoice.cs" />
     <Compile Include="Assets\Script\uiMenu.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />

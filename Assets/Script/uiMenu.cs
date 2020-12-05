@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class uiMenu: MonoBehaviour {
     public GameObject player;
     public GameObject endMenu;
     public Camera worldCamera;
+    public TextMeshProUGUI scoreBoard;
 
+    int score;
     Health playerHealth;
 
     private void Start() {
+        score = 0;
+        scoreBoard.text = "Score: " + score;
         playerHealth = player.GetComponent<Health>(); //Set health component
     }
 
@@ -30,5 +35,14 @@ public class uiMenu: MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked; //Lock the cursor to middle of screen
         worldCamera.targetDisplay = 1;
         endMenu.SetActive(false); //Disable menu
+    }
+
+    public void addScore(int s) {
+        score += s;
+        scoreUpdate();
+    }
+
+    void scoreUpdate() {
+        scoreBoard.text = "Score: " + score;
     }
 }
