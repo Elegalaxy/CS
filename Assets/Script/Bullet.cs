@@ -23,6 +23,12 @@ public class Bullet : MonoBehaviour
             health.takeDamage(damage); //Damage player
             destroy();
         }
+
+        if(other.gameObject.GetComponent<aiHealth>() != null) { //If hit AI
+            aiHealth health = other.gameObject.GetComponent<aiHealth>();
+            health.takeDamage(damage); //Damage AI
+            destroy();
+        }
     }
 
     public void destroy() { //Self-destroy function

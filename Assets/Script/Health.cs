@@ -5,8 +5,9 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public float maxHealth = 100;
+    public float currentHealth;
 
-    float currentHealth;
+    public HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -16,12 +17,13 @@ public class Health : MonoBehaviour
 
     public void takeDamage(float dmg) { //Function to take damage
         currentHealth -= dmg;
+        healthBar.SetHealthBar();
         if(currentHealth <= 0) die(); //Die if health <= 0
-        //Debug.Log(gameObject.name + " " + currentHealth);
     }
 
     public void setHealth() {
         currentHealth = maxHealth; //Reset health function
+        healthBar.SetHealthBar();
     }
 
     public void setHealth(int h) {

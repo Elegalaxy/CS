@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Sound
   - Ai
+  - UI
   layers:
   - Default
   - TransparentFX
