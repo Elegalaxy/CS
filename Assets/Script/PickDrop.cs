@@ -41,6 +41,7 @@ public class PickDrop : MonoBehaviour
         if(!equiped) {
             rb.isKinematic = false;
             collider.isTrigger = false;
+            slotFull = 0;
         }else if(equiped) {
             rb.isKinematic = true;
             collider.isTrigger = true;

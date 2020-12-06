@@ -28,8 +28,9 @@ public class aiWeapon : MonoBehaviour
         if(currentMag <= 0) {
             Invoke(nameof(reload), reloadTime);
         } else {
-            GameObject currentBullet = Instantiate(bullet, firePoint.position, firePoint.rotation); //Instantiate bullet
-            currentBullet.GetComponent<Bullet>().setStat(currentDamage); //Set bullet damage
+            Bullet currentBullet = Instantiate(bullet, firePoint.position, firePoint.rotation).GetComponent<Bullet>(); //Instantiate bullet
+            currentBullet.setStat(currentDamage); //Set bullet damage
+            currentBullet.shootByPlayer = false;
             FindObjectOfType<SoundManager>().play(weapon.name); //Play gun sound
             currentMag--;
         }

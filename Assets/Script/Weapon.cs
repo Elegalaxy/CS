@@ -78,8 +78,9 @@ public class Weapon: MonoBehaviour {
 
         direction = targetPoint - firePoint.position; //Calculate direction of the bullet
 
-        GameObject currentBullet = Instantiate(bullet, firePoint.position, firePoint.rotation); //Instantiate bullet
-        currentBullet.GetComponent<Bullet>().setStat(currentDamage); //Set bullet damage
+        Bullet currentBullet = Instantiate(bullet, firePoint.position, firePoint.rotation).GetComponent<Bullet>(); //Instantiate bullet
+        currentBullet.setStat(currentDamage); //Set bullet damage
+        currentBullet.shootByPlayer = true;
         currentBullet.transform.forward = direction; //Shoot the bullet to the direction
         FindObjectOfType<SoundManager>().play(weaponName); //Play gun sound
         AddRecoil(recoil); //Add recoil

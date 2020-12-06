@@ -6,15 +6,18 @@ public class aiHealth: MonoBehaviour {
     public float maxHealth = 100;
     public float currentHealth;
     public uiMenu menu;
+    public aiScript script;
 
     // Start is called before the first frame update
     void Start() {
+        script = GetComponent<aiScript>();
         menu = GameObject.FindGameObjectWithTag("UI").GetComponent<uiMenu>();
         setHealth(); //Set starting health
     }
 
     public void takeDamage(float dmg) { //Function to take damage
         currentHealth -= dmg;
+        script.gotAttackedByPlayer = true;
         if(currentHealth <= 0) die(); //Die if health <= 0
         //Debug.Log(gameObject.name + " " + currentHealth);
     }

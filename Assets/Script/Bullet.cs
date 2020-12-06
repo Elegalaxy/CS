@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 40f;
     public float damage = 10f;
+    public bool shootByPlayer;
     Rigidbody rb;
 
     // Start is called before the first frame update
@@ -26,7 +27,7 @@ public class Bullet : MonoBehaviour
 
         if(other.gameObject.GetComponent<aiHealth>() != null) { //If hit AI
             aiHealth health = other.gameObject.GetComponent<aiHealth>();
-            health.takeDamage(damage); //Damage AI
+            if(shootByPlayer) health.takeDamage(damage); //Damage AI
             destroy();
         }
     }
