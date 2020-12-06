@@ -22,8 +22,10 @@ public class aiScript : MonoBehaviour
     //Detect
     public float sightRange, attackRange;
     public bool playerSightRange, playerAttackRange;
+    public bool gotAttackedByPlayer;
 
     private void Awake() {
+        gotAttackedByPlayer = false;
         player = GameObject.Find("Player").transform; //Get player
         agent = GetComponent<NavMeshAgent>(); //Get agent
         weapon = gameObject.transform.Find("Weapon").GetComponent<aiWeapon>();
@@ -34,8 +36,8 @@ public class aiScript : MonoBehaviour
         playerSightRange = Physics.CheckSphere(transform.position, sightRange, playerMask); //Check if player in sight
         playerAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask); //Check if player in attack range
 
-        if(!playerSightRange && !playerAttackRange) patroling(); //If not in sight and attack range, patrol 
-        if(playerSightRange && !playerAttackRange) chase(); //If in sight but not attack range, chase
+        if(!playerSightRange && !playerAttackRange && !gotAttackedByPlayer) patroling(); //If not in sight and attack range, patrol 
+        if((playerSightRange && !playerAttackRange) || gotAttackedByPlayer) chase(); //If in sight but not attack range, chase
         if(playerSightRange && playerAttackRange) attack(); //If in sight and range, attack
     }
 

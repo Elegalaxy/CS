@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - Bullet
     - Health
+    - HealthBar
     - Look
     - MapEdge
     - PickDrop
@@ -11,8 +12,11 @@ ScriptsOnlyBuild:
     - UnityEngine.AI.NavMeshSurface
     - Weapon
     - WeaponManager
+    - aiHealth
     - aiScript
     - aiWeapon
+    - mainMenu
+    - mapChoice
     - uiMenu
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -34,8 +38,79 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.RawImage
+    - UnityEngine.UI.Slider
+    - UnityEngine.UI.Text
   sceneClasses:
-    Assets/Scenes/SampleScene.unity:
+    Assets/Scenes/MainMenu.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 109
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11174}
+    - Class: 114
+      Script: {instanceID: 11336}
+    - Class: 114
+      Script: {instanceID: 11376}
+    - Class: 114
+      Script: {instanceID: 11774}
+    - Class: 114
+      Script: {instanceID: 11800}
+    - Class: 114
+      Script: {instanceID: 12114}
+    - Class: 114
+      Script: {instanceID: 12170}
+    - Class: 114
+      Script: {instanceID: 12192}
+    - Class: 114
+      Script: {instanceID: 12388}
+    - Class: 114
+      Script: {instanceID: 12402}
+    - Class: 114
+      Script: {instanceID: 12588}
+    - Class: 114
+      Script: {instanceID: 12652}
+    - Class: 114
+      Script: {instanceID: 12722}
+    - Class: 114
+      Script: {instanceID: 12804}
+    - Class: 114
+      Script: {instanceID: 13016}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/Square.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -54,8 +129,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 49
-      Script: {instanceID: 0}
     - Class: 54
       Script: {instanceID: 0}
     - Class: 65
@@ -68,58 +141,56 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
-    - Class: 109
-      Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 11174}
     - Class: 114
-      Script: {instanceID: 11372}
+      Script: {instanceID: 11206}
     - Class: 114
-      Script: {instanceID: 11394}
+      Script: {instanceID: 11288}
     - Class: 114
-      Script: {instanceID: 11472}
+      Script: {instanceID: 11376}
     - Class: 114
-      Script: {instanceID: 11528}
+      Script: {instanceID: 11398}
     - Class: 114
-      Script: {instanceID: 11708}
+      Script: {instanceID: 11476}
     - Class: 114
-      Script: {instanceID: 11748}
+      Script: {instanceID: 11504}
     - Class: 114
-      Script: {instanceID: 11768}
+      Script: {instanceID: 11534}
     - Class: 114
-      Script: {instanceID: 11794}
+      Script: {instanceID: 11714}
     - Class: 114
-      Script: {instanceID: 12034}
+      Script: {instanceID: 11754}
     - Class: 114
-      Script: {instanceID: 12148}
+      Script: {instanceID: 11774}
     - Class: 114
-      Script: {instanceID: 12162}
+      Script: {instanceID: 12040}
     - Class: 114
-      Script: {instanceID: 12184}
+      Script: {instanceID: 12156}
     - Class: 114
-      Script: {instanceID: 12380}
+      Script: {instanceID: 12170}
     - Class: 114
-      Script: {instanceID: 12394}
+      Script: {instanceID: 12192}
     - Class: 114
-      Script: {instanceID: 12532}
+      Script: {instanceID: 12388}
     - Class: 114
-      Script: {instanceID: 12552}
+      Script: {instanceID: 12540}
     - Class: 114
-      Script: {instanceID: 12580}
+      Script: {instanceID: 12560}
     - Class: 114
       Script: {instanceID: 12588}
     - Class: 114
-      Script: {instanceID: 12644}
+      Script: {instanceID: 12596}
     - Class: 114
-      Script: {instanceID: 12736}
+      Script: {instanceID: 12652}
     - Class: 114
-      Script: {instanceID: 12794}
+      Script: {instanceID: 12746}
     - Class: 114
-      Script: {instanceID: 12916}
+      Script: {instanceID: 12926}
     - Class: 114
-      Script: {instanceID: 13006}
+      Script: {instanceID: 13016}
     - Class: 114
-      Script: {instanceID: 38080}
+      Script: {instanceID: 13046}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -161,6 +232,12 @@ ScriptsOnlyBuild:
     className: TMP_SelectionCaret
   - hash:
       serializedVersion: 2
+      Hash: 33f8bd6a0c804c9d031bb85940dcde75
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HealthBar
+  - hash:
+      serializedVersion: 2
       Hash: 87ff43d2baf3385cba327d8f803a4ebb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -183,6 +260,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: PlayerQuitHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 478deda1542259667094914607e881ae
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: aiHealth
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -281,6 +364,12 @@ ScriptsOnlyBuild:
     className: PhysicsRaycaster
   - hash:
       serializedVersion: 2
+      Hash: 197000677953b6bf275ceac1be148a36
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: uiMenu
+  - hash:
+      serializedVersion: 2
       Hash: dd2688c0d7cf64395a3d84b27decc009
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -335,7 +424,7 @@ ScriptsOnlyBuild:
     className: MapEdge
   - hash:
       serializedVersion: 2
-      Hash: 27b1590f5fed2c3636ac627b082c67f7
+      Hash: eb34b08db3c195c54fb2fb4797fdcf8b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Health
@@ -417,6 +506,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: RemoteTestResultSender
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: mainMenu
   - hash:
       serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
@@ -537,6 +632,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools
     className: BeforeAfterTestCommandState
+  - hash:
+      serializedVersion: 2
+      Hash: 6a092bddfd1547d6adb68b0cd7c22e92
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: mapChoice
   - hash:
       serializedVersion: 2
       Hash: cb61b3d480b93c45dcbe8c5bd8fe2aae
@@ -663,13 +764,8 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 1c9460cbbad1a87d2d33881085cf1f64
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: uiMenu
   platform: 5
   scenePathNames:
-  - Assets/Scenes/SampleScene.unity
+  - Assets/Scenes/MainMenu.unity
+  - Assets/Scenes/Square.unity
   playerPath: D:/ZK/Output/Unity/CS/CS.exe
