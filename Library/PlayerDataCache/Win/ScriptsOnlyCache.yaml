@@ -6,6 +6,7 @@ ScriptsOnlyBuild:
     - HealthBar
     - Look
     - MapEdge
+    - PauseMenu
     - PickDrop
     - PlayerMovement
     - SoundManager
@@ -17,6 +18,7 @@ ScriptsOnlyBuild:
     - aiWeapon
     - mainMenu
     - mapChoice
+    - timer
     - uiMenu
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -75,25 +77,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11800}
     - Class: 114
-      Script: {instanceID: 12114}
+      Script: {instanceID: 12118}
     - Class: 114
-      Script: {instanceID: 12170}
+      Script: {instanceID: 12174}
     - Class: 114
-      Script: {instanceID: 12192}
+      Script: {instanceID: 12196}
     - Class: 114
-      Script: {instanceID: 12388}
+      Script: {instanceID: 12392}
     - Class: 114
-      Script: {instanceID: 12402}
+      Script: {instanceID: 12406}
     - Class: 114
-      Script: {instanceID: 12588}
+      Script: {instanceID: 12592}
     - Class: 114
-      Script: {instanceID: 12652}
+      Script: {instanceID: 12656}
     - Class: 114
-      Script: {instanceID: 12722}
+      Script: {instanceID: 12726}
     - Class: 114
-      Script: {instanceID: 12804}
+      Script: {instanceID: 12808}
     - Class: 114
-      Script: {instanceID: 13016}
+      Script: {instanceID: 13020}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -148,6 +150,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11288}
     - Class: 114
+      Script: {instanceID: 11336}
+    - Class: 114
       Script: {instanceID: 11376}
     - Class: 114
       Script: {instanceID: 11398}
@@ -164,33 +168,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11774}
     - Class: 114
-      Script: {instanceID: 12040}
+      Script: {instanceID: 11932}
     - Class: 114
-      Script: {instanceID: 12156}
+      Script: {instanceID: 11990}
     - Class: 114
-      Script: {instanceID: 12170}
+      Script: {instanceID: 12044}
     - Class: 114
-      Script: {instanceID: 12192}
+      Script: {instanceID: 12160}
     - Class: 114
-      Script: {instanceID: 12388}
+      Script: {instanceID: 12174}
     - Class: 114
-      Script: {instanceID: 12540}
+      Script: {instanceID: 12196}
     - Class: 114
-      Script: {instanceID: 12560}
+      Script: {instanceID: 12392}
     - Class: 114
-      Script: {instanceID: 12588}
+      Script: {instanceID: 12544}
     - Class: 114
-      Script: {instanceID: 12596}
+      Script: {instanceID: 12564}
     - Class: 114
-      Script: {instanceID: 12652}
+      Script: {instanceID: 12592}
     - Class: 114
-      Script: {instanceID: 12746}
+      Script: {instanceID: 12600}
     - Class: 114
-      Script: {instanceID: 12926}
+      Script: {instanceID: 12656}
     - Class: 114
-      Script: {instanceID: 13016}
+      Script: {instanceID: 12750}
     - Class: 114
-      Script: {instanceID: 13046}
+      Script: {instanceID: 12930}
+    - Class: 114
+      Script: {instanceID: 13020}
+    - Class: 114
+      Script: {instanceID: 13050}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -262,7 +270,7 @@ ScriptsOnlyBuild:
     className: PlayerQuitHandler
   - hash:
       serializedVersion: 2
-      Hash: 478deda1542259667094914607e881ae
+      Hash: ff2b2f0fb3f291c6e34bcf029e4ac6b0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: aiHealth
@@ -364,7 +372,7 @@ ScriptsOnlyBuild:
     className: PhysicsRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 197000677953b6bf275ceac1be148a36
+      Hash: db8ac00d29dee09355db812e54f56a6e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: uiMenu
@@ -460,6 +468,12 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
+      Hash: 456ba1de5666b646552a5e581c657431
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: timer
+  - hash:
+      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -470,6 +484,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ScrollRect
+  - hash:
+      serializedVersion: 2
+      Hash: 930b2a7c015542327cee6af349728cdd
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PauseMenu
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -598,7 +618,7 @@ ScriptsOnlyBuild:
     className: WeaponManager
   - hash:
       serializedVersion: 2
-      Hash: 9c5c266f4005185f33b956f949cf110d
+      Hash: 5aa61d8400757fc8c1dd149fe4942bf7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: aiScript
@@ -640,7 +660,7 @@ ScriptsOnlyBuild:
     className: mapChoice
   - hash:
       serializedVersion: 2
-      Hash: cb61b3d480b93c45dcbe8c5bd8fe2aae
+      Hash: 90344f3a1fa3f7dc8bd31be2d70224ed
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Bullet

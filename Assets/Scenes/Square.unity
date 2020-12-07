@@ -6128,6 +6128,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   menu: {fileID: 0}
+  script: {fileID: 0}
 --- !u!1 &1280680563
 GameObject:
   m_ObjectHideFlags: 0
@@ -9887,8 +9888,11 @@ MonoBehaviour:
   showBullet: {fileID: 299786813}
   look: {fileID: 963194229}
   recoil: 2
+  meleeTime: 1
   weaponName: 
   selectedWeapon: 0
+  meleeParticle: {fileID: 3131173891071263033, guid: 7898555def42d8243bf20dcca13c54e4,
+    type: 3}
 --- !u!1001 &1826483305
 PrefabInstance:
   m_ObjectHideFlags: 0
