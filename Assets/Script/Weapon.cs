@@ -12,9 +12,12 @@ public class Weapon: MonoBehaviour {
     public Look look;
 
     public float recoil = 2f;
+    public float meleeTime = 1f;
 
     public string weaponName;
     public int selectedWeapon;
+
+    public GameObject meleeParticle;
 
     PickDrop currentWeapon;
 
@@ -33,6 +36,8 @@ public class Weapon: MonoBehaviour {
         }
         selectWeapon();
         updateGun(); //Update bullet info from weapon
+
+        meleeTime = 1f;
     }
 
     // Update is called once per frame
@@ -63,6 +68,11 @@ public class Weapon: MonoBehaviour {
         }
 
         if(previousSelectedWeapon != selectedWeapon) selectWeapon();
+
+        //Melee
+        if(Input.GetKeyDown(KeyCode.C)) {
+            melee();
+        }
     }
 
 
@@ -145,13 +155,20 @@ public class Weapon: MonoBehaviour {
     public void selectWeapon() {
         int i = 0;
         foreach(Transform weapon in transform) {
-            if(i == selectedWeapon) weapon.gameObject.SetActive(true);
-            else weapon.gameObject.SetActive(false);
+            if(i == selectedWeapon) weapon.gameObject.SetActive(true); //Set choosen weapon active
+            else weapon.gameObject.SetActive(false); //Set other weapon unactive
             i++;
         }
-        if(transform.childCount > 0) weaponName = transform.GetChild(selectedWeapon).name;
+        if(transform.childCount > 0) weaponName = transform.GetChild(selectedWeapon).name; //Set weapon name if got weapon
         else weaponName = "";
-        updateGun();
+        updateGun(); //Update damage and speed
     }
 
+    void melee() {
+        GameObject currentParticle = Instantiate(meleeParticle, firePoint.position, firePoint.rotation);
+        currentParticle.transform.SetParent(GameObject.FindGameObjectWithTag("Player").transform);
+        currentParticle.GetComponent<Rigidbody>().AddForce(currentParticle.transform.up * 100f);
+        currentParticle.GetComponent<Rigidbody>().AddForce(currentParticle.transform.right * 500f);
+        Destroy(currentParticle, 0.5f);
+    }
 }
