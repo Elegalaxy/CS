@@ -4276,7 +4276,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.02
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -9891,8 +9891,7 @@ MonoBehaviour:
   meleeTime: 1
   weaponName: 
   selectedWeapon: 0
-  meleeParticle: {fileID: 3131173891071263033, guid: 7898555def42d8243bf20dcca13c54e4,
-    type: 3}
+  melee: {fileID: 0}
 --- !u!1001 &1826483305
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12121,6 +12120,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1152303106}
+    - target: {fileID: 5475409888450253900, guid: 32ef36a671e1c154f84a034805b3c102,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5475409888450254768, guid: 32ef36a671e1c154f84a034805b3c102,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12175,6 +12179,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5475409888450254769, guid: 32ef36a671e1c154f84a034805b3c102,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32ef36a671e1c154f84a034805b3c102, type: 3}
