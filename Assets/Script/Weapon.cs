@@ -17,8 +17,6 @@ public class Weapon: MonoBehaviour {
     public string weaponName;
     public int selectedWeapon;
 
-    public GameObject meleeParticle;
-
     PickDrop currentWeapon;
 
     float currentShootingTime;
@@ -28,6 +26,8 @@ public class Weapon: MonoBehaviour {
     float reloadTime;
     float shootingTime;
     int currentDamage;
+
+    RaycastHit info;
 
     void Start() {
         if(transform.GetChild(0) != null) {
@@ -42,6 +42,10 @@ public class Weapon: MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        Physics.Raycast(transform.position, -transform.TransformDirection(Vector3.forward), out info, 5f, LayerMask.GetMask("Ai"));
+
+        Debug.DrawRay(transform.position, info.transform.position, Color.green);
+
         //countdown
         if(currentShootingTime > 0) currentShootingTime -= Time.deltaTime; //Count shooting time
 
@@ -71,7 +75,7 @@ public class Weapon: MonoBehaviour {
 
         //Melee
         if(Input.GetKeyDown(KeyCode.C)) {
-            melee();
+            meleeAttack();
         }
     }
 
@@ -164,11 +168,11 @@ public class Weapon: MonoBehaviour {
         updateGun(); //Update damage and speed
     }
 
-    void melee() {
-        GameObject currentParticle = Instantiate(meleeParticle, firePoint.position, firePoint.rotation);
-        currentParticle.transform.SetParent(GameObject.FindGameObjectWithTag("Player").transform);
-        currentParticle.GetComponent<Rigidbody>().AddForce(currentParticle.transform.up * 100f);
-        currentParticle.GetComponent<Rigidbody>().AddForce(currentParticle.transform.right * 500f);
-        Destroy(currentParticle, 0.5f);
+    void meleeAttack() {
+        if(info.transform != null) Debug.Log(info.transform.name);
+        if(info.transform != null && info.transform.GetComponent<aiHealth>() != null) {
+            info.transform.GetComponent<aiHealth>().takeDamage(10f);
+            info.transform.GetComponent<Rigidbody>().AddForce(info.transform.forward * -30f, ForceMode.Impulse);
+        }
     }
 }

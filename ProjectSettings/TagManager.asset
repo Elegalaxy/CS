@@ -9,6 +9,7 @@ TagManager:
   - Sound
   - Ai
   - UI
+  - Melee
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - 
   - Ground
   - Player
-  - 
+  - Ai
   - 
   - 
   - 

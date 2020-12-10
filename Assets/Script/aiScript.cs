@@ -78,4 +78,8 @@ public class aiScript : MonoBehaviour
     void resetAttack() {
         isAttacked = false; //Reset attack
     }
+
+    public void getKnockBack() {
+        //GetComponent<Rigidbody>().AddForce(transform.forward * -10f, ForceMode.Impulse);
+    }
 }
