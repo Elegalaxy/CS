@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 5913345672851084368}
   - component: {fileID: 1502334552207559101}
   - component: {fileID: 2423343196684928945}
+  - component: {fileID: 666161090806934072}
   m_Layer: 0
   m_Name: M1911
   m_TagString: Untagged
@@ -273,6 +274,31 @@ MonoBehaviour:
   dropForce: 0
   dropUpForce: 0
   equiped: 0
+  maxMag: 0
+  currentMag: 0
+  totalMag: 0
+  reloadTime: 0
+  shootingTime: 0
+  currentDamage: 0
+--- !u!95 &666161090806934072
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694449805434718}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e560369548a582345bbedc42b646068f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1748277932983872
 GameObject:
   m_ObjectHideFlags: 0

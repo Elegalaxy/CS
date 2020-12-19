@@ -7,9 +7,12 @@ using TMPro;
 public class Weapon: MonoBehaviour {
     public Transform firePoint;
     public GameObject bullet;
+    public GameObject muzzle;
+
     public Camera cam;
     public TMP_Text showBullet;
     public Look look;
+    public Animator animator;
 
     public float recoil = 2f;
     public float meleeTime = 1f;
@@ -27,8 +30,7 @@ public class Weapon: MonoBehaviour {
     float shootingTime;
     int currentDamage;
 
-    RaycastHit info;
-
+    bool isEnemy = false;
     void Start() {
         if(transform.GetChild(0) != null) {
             transform.GetChild(0).GetComponent<PickDrop>().PickUp();
@@ -42,9 +44,8 @@ public class Weapon: MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        Physics.Raycast(transform.position, -transform.TransformDirection(Vector3.forward), out info, 5f, LayerMask.GetMask("Ai"));
-
-        Debug.DrawRay(transform.position, info.transform.position, Color.green);
+        //debug for melee
+        if(isEnemy) Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * -2f, Color.green);
 
         //countdown
         if(currentShootingTime > 0) currentShootingTime -= Time.deltaTime; //Count shooting time
@@ -77,6 +78,17 @@ public class Weapon: MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.C)) {
             meleeAttack();
         }
+
+        //Aiming
+        if(Input.GetButton("Fire2")) {
+            int id = GameObject.FindObjectOfType<WeaponManager>().GetComponent<WeaponManager>().getWeaponId(weaponName);
+            animator.SetInteger("weapon", id);
+            animator.SetBool("isAim", true);
+            look.scopeSlow(true);
+        } else {
+            animator.SetBool("isAim", false);
+            look.scopeSlow(false);
+        }
     }
 
 
@@ -92,6 +104,9 @@ public class Weapon: MonoBehaviour {
 
         direction = targetPoint - firePoint.position; //Calculate direction of the bullet
 
+        GameObject muz = Instantiate(muzzle, firePoint.position, firePoint.rotation);
+        muz.transform.SetParent(transform);
+        Destroy(muz, 0.13f);
         Bullet currentBullet = Instantiate(bullet, firePoint.position, firePoint.rotation).GetComponent<Bullet>(); //Instantiate bullet
         currentBullet.setStat(currentDamage); //Set bullet damage
         currentBullet.shootByPlayer = true;
@@ -154,6 +169,14 @@ public class Weapon: MonoBehaviour {
     PickDrop getWeapon(string name) {
         return transform.Find(name).GetComponent<PickDrop>(); //Find weapon object
     }
+    void meleeAttack() {
+        RaycastHit info; //Get hit info
+        if(Physics.Raycast(transform.position, -transform.TransformDirection(Vector3.forward), out info, 2f, LayerMask.GetMask("Ai"))) {
+            info.transform.GetComponent<aiHealth>().takeDamage(10f);
+            info.transform.GetComponent<Rigidbody>().AddForce(transform.forward * -8f, ForceMode.Impulse);
+            isEnemy = true; //debug
+        } else isEnemy = false; //debug
+    }
 
     //Public functions
     public void selectWeapon() {
@@ -166,13 +189,5 @@ public class Weapon: MonoBehaviour {
         if(transform.childCount > 0) weaponName = transform.GetChild(selectedWeapon).name; //Set weapon name if got weapon
         else weaponName = "";
         updateGun(); //Update damage and speed
-    }
-
-    void meleeAttack() {
-        if(info.transform != null) Debug.Log(info.transform.name);
-        if(info.transform != null && info.transform.GetComponent<aiHealth>() != null) {
-            info.transform.GetComponent<aiHealth>().takeDamage(10f);
-            info.transform.GetComponent<Rigidbody>().AddForce(info.transform.forward * -30f, ForceMode.Impulse);
-        }
     }
 }

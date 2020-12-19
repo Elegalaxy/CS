@@ -6,6 +6,7 @@ public class aiWeapon : MonoBehaviour
 {
     public Transform weapon, firePoint;
     public GameObject bullet;
+    public GameObject muzzle;
     public GunClass weaponType;
 
     int currentDamage, maxMag, currentMag;
@@ -28,6 +29,9 @@ public class aiWeapon : MonoBehaviour
         if(currentMag <= 0) {
             Invoke(nameof(reload), reloadTime);
         } else {
+            GameObject muz = Instantiate(muzzle, firePoint.position, firePoint.rotation);
+            muz.transform.SetParent(transform);
+            Destroy(muz, 0.13f);
             Bullet currentBullet = Instantiate(bullet, firePoint.position, firePoint.rotation).GetComponent<Bullet>(); //Instantiate bullet
             currentBullet.setStat(currentDamage); //Set bullet damage
             currentBullet.shootByPlayer = false;
