@@ -115,7 +115,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5475409888450253898}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97fc1fab51828bb479f08b12b1580fc5, type: 3}
   m_Name: 
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5475409889649369467}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97bab4132196671469de5aaeecb823c0, type: 3}
   m_Name: 
@@ -258,6 +258,7 @@ MonoBehaviour:
   weapon: {fileID: 0}
   firePoint: {fileID: 0}
   bullet: {fileID: 3189510824427180214, guid: 93986dcb596a37f4d9bf8cc92f94107a, type: 3}
+  muzzle: {fileID: 100006, guid: 30b4cc2728d8cec499fad63ba93785a4, type: 3}
   weaponType:
     bulletType: 
     damage: 0

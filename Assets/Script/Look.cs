@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Look : MonoBehaviour
 {
-    public float mouseSensitivity = 250f;
+    public float mouseSensitivity;
 
     public Transform playerBody;
 
@@ -14,6 +14,7 @@ public class Look : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mouseSensitivity = 250f;
         Cursor.lockState = CursorLockMode.Locked; //Lock the cursor to middle of screen
     }
 
@@ -28,5 +29,10 @@ public class Look : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f); //Apply camera rotation on Y
         playerBody.Rotate(Vector3.up * mouseX); //Apply body rotation on X
+    }
+
+    public void scopeSlow(bool isAim) {
+        if(isAim) mouseSensitivity = 150f;
+        else mouseSensitivity = 250f;
     }
 }

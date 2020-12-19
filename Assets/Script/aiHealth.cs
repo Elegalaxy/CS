@@ -19,7 +19,7 @@ public class aiHealth: MonoBehaviour {
         currentHealth -= dmg;
         script.gotAttackedByPlayer = true;
         if(currentHealth <= 0) die(); //Die if health <= 0
-        Debug.Log(gameObject.name + " " + currentHealth);
+        //Debug.Log(gameObject.name + " " + currentHealth);
     }
 
     public void setHealth() {
