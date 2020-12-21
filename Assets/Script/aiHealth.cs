@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class aiHealth: MonoBehaviour {
     public float maxHealth = 100;
@@ -17,6 +18,9 @@ public class aiHealth: MonoBehaviour {
 
     public void takeDamage(float dmg) { //Function to take damage
         currentHealth -= dmg;
+        RawImage dmgCursor = GameObject.Find("DamageCursor").GetComponent<RawImage>();
+        dmgCursor.CrossFadeAlpha(1, 0f, false);
+        dmgCursor.CrossFadeAlpha(0, 0.5f,false);
         script.gotAttackedByPlayer = true;
         if(currentHealth <= 0) die(); //Die if health <= 0
         //Debug.Log(gameObject.name + " " + currentHealth);
