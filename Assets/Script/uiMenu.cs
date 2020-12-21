@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +17,7 @@ public class uiMenu: MonoBehaviour {
     Health playerHealth;
 
     private void Start() {
+        GameObject.Find("DamageCursor").GetComponent<RawImage>().canvasRenderer.SetAlpha(0f);
         score = 0; //Initialize score
         scoreBoard.text = "Score: " + score;
         playerHealth = player.GetComponent<Health>(); //Set health component
