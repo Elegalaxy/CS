@@ -66,6 +66,15 @@ public class aiScript : MonoBehaviour
     void attack() {
         agent.SetDestination(transform.position); //Stop walking
         transform.LookAt(player); //Look at player
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
+        Debug.DrawRay(weapon.firePoint.position, transform.forward);
+        if(Physics.Raycast(ray, out hit, Vector3.Distance(weapon.firePoint.position, player.position))) {
+            if(hit.transform.tag != "Player") {
+                chase();
+                return;
+            }
+        }
 
         if(!isAttacked) {
             //Attack
