@@ -5,6 +5,7 @@ using UnityEngine;
 public class Look : MonoBehaviour
 {
     public float mouseSensitivity;
+    float currentSensitivity = 0f;
 
     public Transform playerBody;
 
@@ -14,7 +15,7 @@ public class Look : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mouseSensitivity = 250f;
+        currentSensitivity = mouseSensitivity;
         Cursor.lockState = CursorLockMode.Locked; //Lock the cursor to middle of screen
     }
 
@@ -32,7 +33,7 @@ public class Look : MonoBehaviour
     }
 
     public void scopeSlow(bool isAim) {
-        if(isAim) mouseSensitivity = 150f;
-        else mouseSensitivity = 250f;
+        if(isAim) mouseSensitivity = 170f;
+        else mouseSensitivity = currentSensitivity;
     }
 }

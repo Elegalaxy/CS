@@ -72,7 +72,18 @@ public class Weapon: MonoBehaviour {
             else selectedWeapon--;
         }
 
-        if(previousSelectedWeapon != selectedWeapon) selectWeapon();
+
+        if(Input.GetKeyDown(KeyCode.Alpha1)) { //Changing weapon using key
+            selectedWeapon = 0;
+        }else if(Input.GetKeyDown(KeyCode.Alpha2)) {
+            selectedWeapon = 1;
+        } else if(Input.GetKeyDown(KeyCode.Alpha3)) {
+            selectedWeapon = 2;
+        } else if(Input.GetKeyDown(KeyCode.Alpha4)) {
+            selectedWeapon = 3;
+        }
+
+        if(selectedWeapon < transform.childCount && previousSelectedWeapon != selectedWeapon) selectWeapon();
 
         //Melee
         if(Input.GetKeyDown(KeyCode.C)) {
