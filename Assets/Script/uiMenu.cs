@@ -11,6 +11,7 @@ public class uiMenu: MonoBehaviour {
     public Camera worldCamera;
     public TextMeshProUGUI scoreBoard;
 
+    public bool isTesting = false; //Testing switch
     public GameObject victoryMenu;
 
     int score;
@@ -60,6 +61,7 @@ public class uiMenu: MonoBehaviour {
     }
 
     public void victory(bool isWin) {
+        if(isTesting) return; //Return if developer is testing
         string result;
         if(isWin) {
             result = "You Win!"; //Set result text
